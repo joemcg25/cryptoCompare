@@ -4,5 +4,6 @@ if None==os.getenv("PROJECTROOT"):
 
 from api import CryptoCompare
 base=CryptoCompare.CryptoCompare()
-print(base.getPrice())
+print(base.singlePrice("BTC",["USD","JPY","EUR"]))
+print(base.singlePrice("ETH",["GBP"]))
 
