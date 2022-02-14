@@ -1,15 +1,17 @@
 from urllib import request
-import json
-import os
+import os,sys,csv,json
 if None==os.getenv("PROJECTROOT"):
     os.environ["PROJECTROOT"]=os.getcwd()
 
 class CryptoCompare:
     apiKey = os.getenv("API_KEY")
     baseUrl="https://min-api.cryptocompare.com"
-    endpoints={"singlePrice":"/data/price"}
+    endpoints={}
     def __init__(self):
-        pass
+        with open(os.getenv("PROJECTROOT") + "\\endpoints.csv","r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                self.endpoints[row[0]]=row[1]
     def buildURL(self):
         return self.baseUrl
     def buildAPIKeyArg(self):
@@ -23,11 +25,12 @@ class CryptoCompare:
         for i in dict.keys():
             empty.append(str(i)+"="+self.parseArgs(dict[i]))
         return "&".join(empty)
-    def getPrice(self,dict):
-        res=request.urlopen(self.buildURL()+"/data/price"+"?"+self.createArgs(dict))
-        return json.load(res)
     def singlePrice(self,cryptoSym,refSym):
         return self.makeRequest("singlePrice",{"fsym": cryptoSym, "tsyms": refSym})
+    def multiPrice(self,cryptoSym,refSym):
+        return self.makeRequest("multiPrice",{"fsyms": cryptoSym, "tsyms": refSym})
+    def multiPriceFull(self,cryptoSym,refSym):
+        return self.makeRequest("multiPriceFull",{"fsyms": cryptoSym, "tsyms": refSym})
     def makeRequest(self,endpoint,args):
         if None==self.apiKey:
             return None
