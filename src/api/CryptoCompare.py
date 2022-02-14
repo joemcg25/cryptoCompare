@@ -12,6 +12,7 @@ class CryptoCompare:
             reader = csv.reader(file)
             for row in reader:
                 self.endpoints[row[0]]=row[1]
+        file.close()
     def buildURL(self):
         return self.baseUrl
     def buildAPIKeyArg(self):
