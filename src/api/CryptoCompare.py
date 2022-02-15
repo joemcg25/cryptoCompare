@@ -26,6 +26,10 @@ class CryptoCompare:
         for i in dict.keys():
             empty.append(str(i)+"="+self.parseArgs(dict[i]))
         return "&".join(empty)
+    #List values
+    def listCoins(self):
+        return self.makeRequest("listCoins",{})
+    #Get Prices
     def singlePrice(self,cryptoSym,refSym):
         return self.makeRequest("singlePrice",{"fsym": cryptoSym, "tsyms": refSym})
     def multiPrice(self,cryptoSym,refSym):
@@ -35,5 +39,6 @@ class CryptoCompare:
     def makeRequest(self,endpoint,args):
         if None==self.apiKey:
             return None
-        res = request.urlopen(self.buildURL() + self.endpoints[endpoint] + "?" + self.createArgs(args)+self.buildAPIKeyArg())
+        url=self.buildURL() + self.endpoints[endpoint] + "?" + self.createArgs(args)+self.buildAPIKeyArg()
+        res = request.urlopen(url)
         return json.load(res)

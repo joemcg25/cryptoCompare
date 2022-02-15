@@ -2,3 +2,4 @@ api,endpoint
 singlePrice,/data/price
 multiPrice,/data/pricemulti
 multiPriceFull,/data/pricemultifull
+listCoins,/data/blockchain/list
