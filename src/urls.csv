@@ -1,0 +1,3 @@
+type,urlLink
+static,https://min-api.cryptocompare.com
+streamer,wss://streamer.cryptocompare.com/v2
