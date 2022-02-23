@@ -1,5 +1,5 @@
 from urllib import request
-import os,sys,csv,json,websockets
+import os,sys,csv,json,websockets,asyncio
 if None==os.getenv("PROJECTROOT"):
     os.environ["PROJECTROOT"]=os.getcwd()
 
@@ -25,6 +25,26 @@ class CryptoStreamer:
         return self.channels[channel]
     def streamTrade(self,exchange,base,quote):
             return "0"+"~"+exchange+"~"+base+"~"+quote
+    async def initSub(self,subArg):
+        url=self.urls["streamer"] + "?" + self.buildAPIKeyArg()
+        async with websockets.connect(url) as websocket:
+            await websocket.send(json.dumps({
+                "action": "SubAdd",
+                "subs": [subArg],
+            }))
+            while True:
+                try:
+                    data = await websocket.recv()
+                except websocket.ConnectionClosed:
+                    break
+                try:
+                    data = json.loads(data)
+                    print(json.dumps(data,indent=4))
+                except ValueError:
+                    print(data)
+    def runSub(self,subArg):
+        asyncio.get_event_loop().run_until_complete(self.initSub(subArg))
+
     def __repr__(self):
         return f"Streamer Crypto Compare API\n " \
                f" Current streamer API's are  {list(self.channels.keys())}"

@@ -27,3 +27,4 @@ print(repr(streamer))
 
 #0~Coinbase~BTC~USD
 print(streamer.streamTrade("Coinbase","BTC","USD"))
+print(streamer.runSub("0~Coinbase~BTC~USD"))
