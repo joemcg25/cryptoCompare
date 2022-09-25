@@ -10,7 +10,7 @@ class CryptoStreamer:
     schemas = {}
     def __init__(self):
         for i in [ "urls.csv","channels.csv","schemas.csv"]:
-            with open(os.getenv("PROJECTROOT") + "/config/" +"\\" + i, "r") as file:
+            with open(os.getenv("PROJECTROOT") + "/config/" +"/" + i, "r") as file:
                 reader = csv.reader(file)
                 for row in reader:
                     if i == "urls.csv":
