@@ -5,5 +5,5 @@ AggregateIndex,5~CCCAGG~{base}~{quote}
 OrderBookL2,8~{exchange}~{base}~{quote}
 FullVolume,11~{base}
 FullTopTier Volume,21~{base}
-OHLCCandles,24~{exchange or CCCAGG}~{base}~{quote}
+OHLCCandles,24~{exchange}~{base}~{quote}
 TopofOrderBook,30~{exchange}~{base}~{quote}

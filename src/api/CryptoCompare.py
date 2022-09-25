@@ -9,7 +9,7 @@ class CryptoCompare:
     urls={}
     def __init__(self):
         for i in ["endpoints.csv","urls.csv"]:
-            with open(os.getenv("PROJECTROOT") + "\\"+i,"r") as file:
+            with open(os.getenv("PROJECTROOT") + "/config/" +"\\"+i,"r") as file:
                 reader = csv.reader(file)
                 for row in reader:
                     if i=="endpoints.csv":
