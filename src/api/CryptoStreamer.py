@@ -16,6 +16,7 @@ class CryptoStreamer:
         subArg=subArg.replace("{base}", base)
         subArg=subArg.replace("{quote}", quote)
         self.runSub(streamArg,subArg)
+    ## Streamer functions ##
     def streamTrade(self,exchange,base,quote):
         subArg=self.setStream("Trade",exchange,base,quote)
     def streamTicker(self,exchange,base,quote):
@@ -49,11 +50,10 @@ class CryptoStreamer:
                 except ValueError:
                     print(data)
     def parseData(self,keyz,data):
-        try:
-            for i in keyz:
-                print(data[i])
-        except KeyError:
-            return
+        keyz=data.keys()
+        if keyz.__contains__("MESSAGE"):
+            return None
+        print(data.values())
     def runSub(self,streamArg,subArg):
         asyncio.get_event_loop().run_until_complete(self.initSub(streamArg,subArg))
 
