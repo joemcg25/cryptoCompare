@@ -2,7 +2,7 @@ import os
 if None==os.getenv("PROJECTROOT"):
     os.environ["PROJECTROOT"]=os.getcwd()
 
-from api import CryptoCompare,CryptoStreamer
+from api import CryptoCompare,CryptoStreamer,APIUtils
 base=CryptoCompare.CryptoCompare()
 print(repr(base))
 print(base.singlePrice("BTC",["USD","JPY","EUR"]))
@@ -23,7 +23,7 @@ print(base.singlePrice("BTC",["USD","JPY","EUR"]))
 #
 #KEY in HEADER - add the following header to your request: authorization: Apikey {your_api_key}.
 streamer=CryptoStreamer.CryptoStreamer()
-print(repr(streamer))
+#print(repr(streamer))
 
 #0~Coinbase~BTC~USD
 print(streamer.streamTrade("Coinbase","BTC","USD"))

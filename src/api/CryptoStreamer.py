@@ -1,37 +1,17 @@
 from urllib import request
 import os,sys,csv,json,websockets,asyncio
+from src.api import APIUtils as APIUtils
 if None==os.getenv("PROJECTROOT"):
     os.environ["PROJECTROOT"]=os.getcwd()
 
 class CryptoStreamer:
-    apiKey = os.getenv("API_KEY")
-    urls = {}
-    channels ={}
-    schemas = {}
+    apiUtils = APIUtils.APIUtils()
     def __init__(self):
-        for i in [ "urls.csv","channels.csv","schemas.csv"]:
-            with open(os.getenv("PROJECTROOT") + "/config/" +"/" + i, "r") as file:
-                reader = csv.reader(file)
-                for row in reader:
-                    if i == "urls.csv":
-                        self.urls[row[0]] = row[1]
-                    elif i == "channels.csv":
-                        self.channels[row[0]] = row[1]
-                    elif i == "schemas.csv":
-                        self.schemas[row[0]] = row[1].split("|")
-            file.close()
-    def buildURL(self):
-        return self.urls["streamer"]
-    def buildAPIKeyArg(self):
-        return "&api_key="+self.apiKey
-    def getChannel(self,channel):
-        return self.channels[channel]
-    def extractKeys(self,channel):
-        return self.schemas[channel]
+        pass
     ## Streaming functions ##
     # Intial wrapper function
     def setStream(self,streamArg,exchange,base,quote):
-        subArg=self.getChannel(streamArg)
+        subArg=self.apiUtils.getChannels(streamArg)
         subArg=subArg.replace("{exchange}",exchange)
         subArg=subArg.replace("{base}", base)
         subArg=subArg.replace("{quote}", quote)
@@ -51,8 +31,8 @@ class CryptoStreamer:
 
     ## Subscription functionality ##
     async def initSub(self,streamArg,subArg):
-        url=self.urls["streamer"] + "?" + self.buildAPIKeyArg()
-        keyz=self.extractKeys(streamArg)
+        url=self.apiUtils.getUrlWithAPIKey("streamer")
+        keyz=self.apiUtils.getSchemas(streamArg)
         async with websockets.connect(url) as websocket:
             await websocket.send(json.dumps({
                 "action": "SubAdd",
