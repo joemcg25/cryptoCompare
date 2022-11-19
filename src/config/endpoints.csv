@@ -3,3 +3,4 @@ singlePrice,/data/price
 multiPrice,/data/pricemulti
 multiPriceFull,/data/pricemultifull
 listCoins,/data/blockchain/list
+getTradingSignals,/data/tradingsignals/intotheblock/latest

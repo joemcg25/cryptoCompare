@@ -1,7 +1,6 @@
 from urllib import request
 import os,json
 from src.api import APIUtils as APIUtils
-
 if None==os.getenv("PROJECTROOT"):
     os.environ["PROJECTROOT"]=os.getcwd()
 
@@ -28,13 +27,16 @@ class CryptoCompare:
         return self.makeRequest("multiPrice",{"fsyms": cryptoSym, "tsyms": refSym})
     def multiPriceFull(self,cryptoSym,refSym):
         return self.makeRequest("multiPriceFull",{"fsyms": cryptoSym, "tsyms": refSym})
+    def getTradingSignals(self,cryptoSym):
+        return self.makeRequest("getTradingSignals",{"fsym": cryptoSym})
     def makeRequest(self,endpoint,args):
         if None==self.apiUtils.returnAPIKey():
             return None
         print(f"Call made to {endpoint} - Please see results")
         url=self.apiUtils.buildURL("static") + self.apiUtils.getEndpoints(endpoint) + "?" + self.createArgs(args)+self.apiUtils.buildAPIKeyArg()
         res = request.urlopen(url)
-        return json.load(res)
+        resAsJson = json.load(res)
+        return resAsJson
     def __repr__(self):
         return f"Static Crypto Compare API\n " \
                f" Current static API's are  {list(self.apiUtils.showEndpoints())}"

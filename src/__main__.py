@@ -25,6 +25,5 @@ print(base.singlePrice("BTC",["USD","JPY","EUR"]))
 streamer=CryptoStreamer.CryptoStreamer()
 #print(repr(streamer))
 
-#0~Coinbase~BTC~USD
-print(streamer.streamTrade("Coinbase","BTC","USD"))
-#print(streamer.extractKeys("Trade"))
+#print(streamer.streamTrade("Coinbase","BTC","USD"))
+

@@ -20,14 +20,14 @@ class APIUtils:
                     elif i == "schemas.csv":
                         self.schemas[row[0]] = row[1]
             file.close()
+    def returnAPIKey(self):
+        return self.apiKey
     def buildURL(self,item):
         return self.urls[item]
     def buildAPIKeyArg(self):
-        return "&api_key="+self.apiKey
+        return "&api_key="+self.returnAPIKey()
     def getUrlWithAPIKey(self,item):
         return self.buildURL(item)+"?"+self.buildAPIKeyArg()
-    def returnAPIKey(self):
-        return self.apiKey
     def showEndpoints(self):
         return self.endpoints.keys()
     def getUrls(self,item):
