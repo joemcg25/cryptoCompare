@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('getPrice', views.getPrice, name="getPrice"),
     path('ccyPrice', views.getCcyPrice, name="getCcyPrice"),
+    path('topLists', views.getTopExchanges, name="getTopExchanges"),
     ]

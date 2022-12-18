@@ -31,6 +31,10 @@ class CryptoCompare:
         return self.makeRequest("multiPriceFull",{"fsyms": cryptoSym, "tsyms": refSym})
     def getTradingSignals(self,cryptoSym):
         return self.makeRequest("getTradingSignals",{"fsym": cryptoSym})
+    def getOrderBook(self,cryptoSym,refSym):
+        return self.makeRequest("getOrderBook", {"fsym": cryptoSym, "tsyms": refSym})
+    def getTopExchanges(self,exchange):
+        return self.makeRequest("getTopExchanges", {"e":exchange})
     def makeRequest(self,endpoint,args):
         if None==self.apiUtils.returnAPIKey():
             return None

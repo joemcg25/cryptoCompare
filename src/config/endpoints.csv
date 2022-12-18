@@ -4,3 +4,5 @@ multiPrice,/data/pricemulti
 multiPriceFull,/data/pricemultifull
 listCoins,/data/blockchain/list
 getTradingSignals,/data/tradingsignals/intotheblock/latest
+getOrderBook,/ob/l2/snapshot
+getTopExchanges,/data/exchange/top/volume

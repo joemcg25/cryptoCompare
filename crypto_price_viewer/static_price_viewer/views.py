@@ -43,6 +43,10 @@ def getCcyPrice(request):
     return render(request,"static_price_viewer/getPrice.html",
                   {"fiatCcy":fiatCcy,"cryptoCcy":cryptoCcy,"ccys":ccys,"prices":prices,"colz":colz,
                    "fiatCcys":fiatCcys,"coinSymbols":coinSymbols,"sentiment":sentiment})
-
-
+## Top Lists ##
+def getTopExchanges(request):
+    exchange = request.GET['exchange']
+    data1=base.getTopExchanges(exchange)
+    print(data1)
+    return render(request,"static_price_viewer/getTopExchanges.html",{"ccys":exchange})
 
