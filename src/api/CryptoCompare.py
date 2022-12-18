@@ -1,5 +1,7 @@
 from urllib import request
-import os,json
+import os,json,environ
+env = environ.Env()
+environ.Env.read_env()
 from src.api import APIUtils as APIUtils
 if None==os.getenv("PROJECTROOT"):
     os.environ["PROJECTROOT"]=os.getcwd()
