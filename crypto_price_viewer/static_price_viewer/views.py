@@ -46,7 +46,9 @@ def getCcyPrice(request):
 ## Top Lists ##
 def getTopExchanges(request):
     exchange = request.GET['exchange']
-    data1=base.getTopExchanges(exchange)
-    print(data1)
-    return render(request,"static_price_viewer/getTopExchanges.html",{"ccys":exchange})
+    toData=base.getTopExchanges(exchange,"TO")["Data"]
+    ## TODO = Map these properly to get a single result ##
+    fromData = base.getTopExchanges(exchange, "FROM")["Data"]
+    colz=["toSymbol","fromSymbol","volume"]
+    return render(request,"static_price_viewer/getTopExchanges.html",{"colz":colz,"toData":toData,"fromData":fromData,"exchange":exchange})
 
