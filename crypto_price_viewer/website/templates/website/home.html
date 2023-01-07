@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Welcome {% endblock %}
+
+{% block content %}
+    <h1>Crypto Price Viewer </h1>
+    <p>
+        Here we will make basic things happen.
+    </p>
+    <h2>Links</h2>
+    <h3>Get Price</h3>
+ <div>
+     <form action = "ccyPrice">
+       <select name="cryptoCcy" id="cryptoCcy">
+                {% for coin in coinSymbols %}
+           <option value={{coin}}>{{coin}}</option>
+           {% endfor %}
+            </select>
+            <select name="fiatCcy" id="fiatCcy">
+           {% for ccy in ccys %}
+            <option value={{ccy}}>{{ccy}}</option>
+             {% endfor %}
+        </select>
+        <input type="submit" value="Get Price">
+    </form>
+    </div>
+    <h3> Get BTC Price </h3>
+<div>
+{% for ccy in ccys %}
+                <form action = "{% url 'getCcyPrice' %}">
+                <input type="hidden" id="cryptoCcy" name="cryptoCcy" value="BTC">
+                <input type="hidden" id="fiatCcy" name="fiatCcy" value={{ccy}}>
+                <input type="submit" value={{ccy}}>
+    </form>
+{% endfor %}
+    </div>
+
+ <h3>Trading Signals</h3>
+    <h3> See Top Trading Symbols by Exchange  </h3>
+<div>
+{% for exchange in exchanges %}
+                <form action = "{% url 'getTopExchanges' %}">
+                <input type="submit" id="exchange" name="exchange" value={{exchange}}>
+    </form>
+{% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Welcome {% endblock %}
+{% block content %}
+
+<h1> 1 {{cryptoCcy}} = How much {{fiatCcy}} ? </h1>
+<table>
+    <tr>
+    {% for item in colz %}
+    <th>{{ item }}</th>
+    {% endfor %}
+    </tr>
+    {% for item1 in ccys %}
+    {% for item2 in prices %}
+    <tr>
+        <td>{{ item1 }}</td>
+        <td>{{ item2 }}</td>
+    </tr>
+    {% endfor %}
+    {% endfor %}
+        </table>
+<div>
+    <h4> Current sentiment is {{sentiment}} </h4>
+    </p>
+    {% if sentiment == "bearish" %}
+    <img src="{% static 'website/bearPhoto.jfif' %}" width="200px">
+    {% elif sentiment == "bullish" %}
+    <img src="{% static 'website/bullPhoto.jfif' %}" width="200px">
+    {% else %}
+    <img src="{% static 'website/bullBearPhoto.jfif' %}" width="200px">
+    {% endif %}
+    <p>
+     <form action = "ccyPrice">
+       <select name="cryptoCcy" id="cryptoCcy">
+                {% for coin in coinSymbols %}
+           <option value={{coin}}>{{coin}}</option>
+           {% endfor %}
+            </select>
+            <select name="fiatCcy" id="fiatCcy">
+           {% for ccy in fiatCcys %}
+            <option value={{ccy}}>{{ccy}}</option>
+             {% endfor %}
+        </select>
+        <input type="submit" value="Get Price">
+    </form><br>
+    </div>
+
+{% endblock %}

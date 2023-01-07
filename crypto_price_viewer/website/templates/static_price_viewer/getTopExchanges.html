@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Welcome {% endblock %}
+{% block content %}
+
+</style>
+    <h1> {{exchange}} Top Volume </h1>
+
+<table class="table">
+    <tr>
+    {% for item in colz %}
+    <th>{{ item }}</th>
+    {% endfor %}
+    </tr>
+    {% for item in toData %}
+    <tr>
+        <td>{{item.toSymbol}}</td>
+        <td>{{item.fromSymbol}}</td>
+        <td>{{item.volume}}</td>
+    </tr>
+    {% endfor %}
+        </table>
+<table>
+
+{% endblock %}
