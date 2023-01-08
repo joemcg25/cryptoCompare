@@ -35,6 +35,10 @@ class CryptoCompare:
         return self.makeRequest("getOrderBook", {"fsym": cryptoSym, "tsyms": refSym})
     def getTopExchanges(self,exchange,direction):
         return self.makeRequest("getTopExchanges", {"e":exchange,"direction":direction})
+    def getAvailableIndexes(self):
+        return self.makeRequest("getAvailableIndexes", {})
+    def singleIndexValue(self,indexName):
+        return self.makeRequest("singleIndexValue", {"indexName":indexName})
     def makeRequest(self,endpoint,args):
         if None==self.apiUtils.returnAPIKey():
             return None

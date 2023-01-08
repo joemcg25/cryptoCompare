@@ -50,5 +50,12 @@ def getTopExchanges(request):
     ## TODO = Map these properly to get a single result ##
     fromData = base.getTopExchanges(exchange, "FROM")["Data"]
     colz=["toSymbol","fromSymbol","volume"]
+    ## TODO Format floats ##
     return render(request,"static_price_viewer/getTopExchanges.html",{"colz":colz,"toData":toData,"fromData":fromData,"exchange":exchange})
 
+def singleIndexValue(request):
+    index = request.GET['index']
+    toData=base.singleIndexValue(index)["Data"]
+    colz=["NAME","VALUE","LASTUPDATE","OPEN24HOUR","HIGH24HOUR","LOW24HOUR"]
+    print(toData)
+    return render(request,"static_price_viewer/singleIndexValue.html",{"colz":colz,"toData":toData,"index":index})

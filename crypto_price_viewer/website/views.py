@@ -13,5 +13,6 @@ for i in coins['Data'].keys():
 ccys=["EUR", "USD", "GBP","JPY","CHF"]
 ccys.sort()
 exchanges=["Coinbase", "Binance", "Kraken"]
+indexes=base.getAvailableIndexes()["Data"]
 def home(request):
-    return render(request,"website/home.html",{"ccys":ccys,"coinSymbols":coinSymbols,"exchanges":exchanges})
+    return render(request,"website/home.html",{"ccys":ccys,"coinSymbols":coinSymbols,"exchanges":exchanges,"indexes":indexes})

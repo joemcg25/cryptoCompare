@@ -44,4 +44,14 @@
     </form>
 {% endfor %}
     </div>
+
+ <h3>Available Indexes</h3>
+    <h3> View Index details  </h3>
+<div>
+{% for index in indexes %}
+                <form action = "{% url 'singleIndexValue' %}">
+                <input type="submit" id="index" name="index" value={{index}}>
+    </form>
+{% endfor %}
+    </div>
 {% endblock %}

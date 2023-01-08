@@ -1,8 +1,10 @@
 api,endpoint
-singlePrice,/data/price
-multiPrice,/data/pricemulti
-multiPriceFull,/data/pricemultifull
-listCoins,/data/blockchain/list
-getTradingSignals,/data/tradingsignals/intotheblock/latest
-getOrderBook,/ob/l2/snapshot
-getTopExchanges,/data/exchange/top/volume
+singlePrice,data/price
+multiPrice,data/pricemulti
+multiPriceFull,data/pricemultifull
+listCoins,data/blockchain/list
+getTradingSignals,/ata/tradingsignals/intotheblock/latest
+getOrderBook,ob/l2/snapshot
+getTopExchanges,data/exchange/top/volume
+getAvailableIndexes,data/index/list
+singleIndexValue,data/index/value
