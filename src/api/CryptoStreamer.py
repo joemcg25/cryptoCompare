@@ -55,8 +55,10 @@ class CryptoStreamer:
             return None
         print(data.values())
     def runSub(self,streamArg,subArg):
-        asyncio.get_event_loop().run_until_complete(self.initSub(streamArg,subArg))
-
+        #asyncio.get_event_loop().run_until_complete(self.initSub(streamArg,subArg))
+        self.initSub(streamArg, subArg)
+        #loop = asyncio.new_event_loop()
+        #asyncio.set_event_loop(loop)
     def __repr__(self):
         return f"Streamer Crypto Compare API\n " \
                f" Current streamer API's are  {list(self.channels.keys())}"

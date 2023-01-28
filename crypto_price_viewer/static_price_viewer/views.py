@@ -2,11 +2,12 @@ from django.shortcuts import render
 import sys,os
 sys.path.insert(1, os.getcwd())
 os.environ["PROJECTROOT"] = os.getcwd()+"\src"
-from src.api import CryptoCompare
+from src.api import CryptoCompare,CryptoStreamer
 # Create your views here.
 
 # Create your views here.
 base=CryptoCompare.CryptoCompare()
+stream=CryptoStreamer.CryptoStreamer()
 coins=base.listCoins()
 coinSymbols=[]
 for i in coins['Data'].keys():
@@ -30,9 +31,10 @@ def getCcyPrice(request):
     ccys=[]
     prices=[]
     signal=base.getTradingSignals(cryptoCcy)
-    sentiment=signal["Data"]["inOutVar"]["sentiment"]
+    #sentiment=signal["Data"]["inOutVar"]["sentiment"]
+    sentiment="bearish"
     if sentiment=="bearish":
-        photo=""
+        photo="{% static 'website/bearPhoto.jfif' %}"
     else:
         photo="{% static 'website/bullPhoto.jfif' %}"
     data=base.singlePrice(cryptoCcy,[fiatCcy])
@@ -59,3 +61,10 @@ def singleIndexValue(request):
     colz=["NAME","VALUE","LASTUPDATE","OPEN24HOUR","HIGH24HOUR","LOW24HOUR"]
     print(toData)
     return render(request,"static_price_viewer/singleIndexValue.html",{"colz":colz,"toData":toData,"index":index})
+
+def streamTrade(request):
+    coin = request.GET['coin']
+    #data=stream.streamTrade("Coinbase","BTC","USD")
+    print(coin)
+    return render(request, "static_price_viewer/streamTrade.html",
+                  {"coin": coin, "data":"This is a test, I repeat a test "})

@@ -6,4 +6,5 @@ urlpatterns = [
     path('ccyPrice', views.getCcyPrice, name="getCcyPrice"),
     path('topLists', views.getTopExchanges, name="getTopExchanges"),
     path('indexValues', views.singleIndexValue, name="singleIndexValue"),
+    path('streamTrade', views.streamTrade, name="streamTrade"),
     ]

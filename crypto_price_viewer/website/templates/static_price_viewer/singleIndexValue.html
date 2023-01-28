@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Welcome {% endblock %}
+{% block content %}
+<style>
+
+    <h1> {{index}} Details </h1>
+
+<table class="table">
+    <tr>
+    {% for item in colz %}
+    <th>{{ item }}</th>
+    {% endfor %}
+    </tr>
+    <tr>
+        <td>{{toData.NAME}}</td>
+        <td>{{toData.VALUE}}</td>
+        <td>{{toData.LASTUPDATE}}</td>
+        <td>{{toData.OPEN24HOUR}}</td>
+        <td>{{toData.HIGH24HOUR}}</td>
+        <td>{{toData.LOW24HOUR}}</td>
+        </table>
+<table>
+</style>
+{% endblock %}

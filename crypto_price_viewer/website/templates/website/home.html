@@ -54,4 +54,14 @@
     </form>
 {% endfor %}
     </div>
+
+ <h3>Available Streams</h3>
+    <h3> View Index details  </h3>
+<div>
+{% for ccy in ccys %}
+                <form action = "{% url 'streamTrade' %}">
+                <input type="submit" id="coin" name="coin" value={{ccy}}>
+    </form>
+{% endfor %}
+    </div>
 {% endblock %}
